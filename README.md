@@ -69,6 +69,8 @@ stateMachine:SetActive(true)
 * The module contains a main update thread that handles state machine execution.
 * The module compares the server's average frame rate to a control group of recent performance and throttles down requests accordingly to avoid overloading the server.
 
+---
+
 ## Conditions
 Conditions are a critical part of the State Machine module as they allow you to define the circumstances under which the state machine should transition to a different state. To use conditions effectively, you will need to define a series of conditions for each state in your NPC's behavior.
 
