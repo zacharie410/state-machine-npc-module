@@ -63,8 +63,41 @@ Example Code:
 ```
 stateMachine:SetActive(true)
 ```
-Additional Notes:
+## Additional Notes:
 
 * The state machine object has a TickDelay property that determines how often the state machine will execute its states.
 * The module contains a main update thread that handles state machine execution.
 * The module compares the server's average frame rate to a control group of recent performance and throttles down requests accordingly to avoid overloading the server.
+
+## Conditions
+Conditions are a critical part of the State Machine module as they allow you to define the circumstances under which the state machine should transition to a different state. To use conditions effectively, you will need to define a series of conditions for each state in your NPC's behavior.
+
+## Here is an overview of how to use conditions:
+
+Create a new condition using the NewCondition() method of the state machine object.
+
+Set the name of the condition using the Name property of the condition object.
+
+Define the Evaluate() function of the condition object. This function should return true if the condition is met and false otherwise.
+
+Set the TransitionState property of the condition object to the state that the state machine should transition to if the condition is met.
+
+Add the condition to the list of conditions for the current state using the AddCondition() method of the state object.
+
+Here is an example of how to create a simple condition:
+
+```
+local condition = stateMachine.NewCondition()
+condition.Name = "Example Condition"
+condition.Evaluate = function() 
+    -- replace this with your own condition checking logic
+    return true 
+end
+condition.TransitionState = stateMachine.GetState("Idle")
+state:AddCondition(condition)
+```
+In this example, the Evaluate() function of the condition object always returns true, which means that the condition will always be met. When the condition is met, the state machine will transition to the Idle state.
+
+You can define more complex conditions by adding additional logic to the Evaluate() function. For example, you could check if the NPC has a specific target or if they are in a particular location before transitioning to a different state.
+
+By defining conditions carefully, you can create sophisticated NPC behavior that responds dynamically to the game environment.
